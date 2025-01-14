@@ -1,89 +1,38 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, unused_import
 
 import 'package:flutter/material.dart';
+import 'package:ilkuyg/screens/ana_ekran.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'screens/page_view.dart';
+import 'screens/hosgeldin_ekran.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+// TEMA EKLE
 
-//TODO: PAGE VIEW VE MODUÜLER YAPIYI BİR ARADA KULLANARAK SAYFA MANTIĞIN IAMAMLA. KONTROLLERİ TARTIS VE DEMOYU GONDER.
-//NOTLAR: PERMISSION HANDLER PACKAGE
-void main() {
-  runApp(const Uygulama());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final preferences = await SharedPreferences.getInstance();
+  final showHome = preferences.getBool('showHome') ?? false;
+  await dotenv.load(fileName: ".env");
+  runApp(Uygulama(showHome: showHome));
 }
 
 class Uygulama extends StatelessWidget {
-  const Uygulama({super.key});
+  final bool showHome;
+  const Uygulama({super.key, this.showHome = false});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-//    debugShowCheckedModeBanner: false,
-      home: AnaEkran(),
-    );
-  }
-}
-
-class AnaEkran extends StatelessWidget {
-  const AnaEkran({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    String? swipeDirection;
-
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 40, 40, 41),
-      appBar: AppBar(
-        title: const Text(
-          'Sesli Tarih Projesi',
-          style: TextStyle(
-            color: Color.fromARGB(255, 233, 233, 233),
-            fontFamily: 'PlayfairDisplay',
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 138, 26, 26),
-        centerTitle: true,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: const ColorScheme.light(
+            //  surface: Color(0xff28282a),
+            //primary: Color.fromARGB(255, 112, 21, 21),
+            ),
       ),
-      body: GestureDetector(
-        onPanUpdate: (details) {
-          int sensivity = 8; // Sensivity burdan değiştirilebilir.
-          if (details.delta.dx > sensivity) {
-            print(details.delta.dx);
-            swipeDirection = 'right';
-          } else if (details.delta.dx < -sensivity) {
-            swipeDirection = 'left';
-          }
-          print("kaydirma haraketi");
-        },
-        //TODO: Swipe kontroller için TEK bir fonskiyon oluştur. ve onu çağır. anonim fonksiyon kullanma. parametre yerine isAcademic kullan.
-        onPanEnd: (details) {
-          if (swipeDirection == 'left') {
-            _kaydirmaKontrolcusu(context, isAcademic: false);
-          }
-          if (swipeDirection == 'right') {
-            _kaydirmaKontrolcusu(context, isAcademic: true);
-          }
-          swipeDirection = null; // Yönü sıfırla
-        }, //diger kontroller
-        onDoubleTap: () {
-          print('Çift tıklandı.');
-        },
 
-        onLongPress: () {
-          print('Uzun basıldı.');
-        },
-      ),
-    );
-  }
-}
-
-void _kaydirmaKontrolcusu(BuildContext context, {required bool isAcademic}) {
-  if (isAcademic) {
-    //AKADEMİK TANIM
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Sağa kaydırıldı.')),
-    );
-  } else {
-    //NORMAL TANIM
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Sola kaydırıldı.')),
+      //  home: showHome ? const SayfaView() : const KarsilamaEkrani(), ENABLE TO ONE TIME
+      home: const KarsilamaEkrani(),
     );
   }
 }

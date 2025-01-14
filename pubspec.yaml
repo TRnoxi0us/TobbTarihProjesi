@@ -36,6 +36,22 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   speech_to_text: ^7.0.0
+  permission_handler: ^11.3.1
+  smooth_page_indicator: ^1.2.0+3
+  avatar_glow: ^3.0.1
+  google_fonts: ^6.2.1
+  shared_preferences: ^2.3.3
+  url_launcher: ^6.3.1
+  string_similarity: ^2.1.1
+  googleapis: ^13.2.0
+  flutter_dotenv: ^5.2.1
+  googleapis_auth: ^1.6.0
+  audioplayers: ^6.1.0
+  path_provider: ^2.1.5
+  flutter_launcher_icons: ^0.14.2
+  flutter_native_splash: ^2.4.4
+  vibration: ^2.0.1
+
 
 dev_dependencies:
   flutter_test:
@@ -48,10 +64,44 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
 
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/256.png"
+flutter_native_splash:
+  color: "#8a1a1a"
+  android_12:
+    # The image parameter sets the splash screen icon image.  If this parameter is not specified,
+    # the app's launcher icon will be used instead.
+    # Please note that the splash screen will be clipped to a circle on the center of the screen.
+    # App icon with an icon background: This should be 960×960 pixels, and fit within a circle
+    # 640 pixels in diameter.
+    # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
+    # 768 pixels in diameter.  To fit a 1152x1152 image within a circle with a 768 diameter, simply 
+    # ensure that the most important design elements of your image are placed within a circular area
+    # with a 768 diameter at the center of the 1152x1152 canvas.
+    #image: assets/android12splash.png
+
+    # Splash screen background color.
+    color: "#8a1a1a"
+
+    # App icon background color.
+    icon_background_color: "#8a1a1a"
+
+    # The branding property allows you to specify an image used as branding in the splash screen.
+    #branding: assets/dart.png
+
+    # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
+    # apply when the device is in dark mode. If they are not specified, the app will use the
+    # parameters from above.  If there is no parameter above, the app will use the light mode values.
+    #image_dark: assets/android12splash-invert.png
+    #color_dark: "#042a49"
+    #icon_background_color_dark: "#eeeeee"
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -60,9 +110,14 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #    - assets/images/okul_logo.jpg
+  assets:
+    - .env
+    - assets/word_list.json
+    #images
 
+    - assets/images/
+    - assets/images/svg/
+    - assets/audio/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
