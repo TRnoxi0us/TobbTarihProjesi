@@ -36,10 +36,10 @@ class _SayfaViewState extends State<SayfaView> {
       },
       controller: _pageController,
       scrollDirection: Axis.vertical,
-      children: const [
-        OgrenmeOyunlari(),
-        AnaEkran(),
-        PodcastEkran(),
+      children: [
+        const OgrenmeOyunlari(),
+        const AnaEkran(),
+        const PodcastEkran(),
         Kaynakca(),
         //YENİ EKRANLAR
       ],

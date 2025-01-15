@@ -69,10 +69,10 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-flutter_icons:
+flutter_launcher_icons:
   android: true
-  ios: true
-  image_path: "assets/icon/256.png"
+  ios: false
+  image_path: "assets/images/icon/1024.jpg"
 flutter_native_splash:
   color: "#8a1a1a"
   android_12:
